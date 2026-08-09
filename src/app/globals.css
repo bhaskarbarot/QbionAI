@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+/* =========================================================
+   Qubion.Ai — Design tokens
+   Palette : near-black #070C0A · teal-green #16A34A/#22C55E
+             mint-lime glow #4ADE80/#A3E635 · dark surface #131F1A
+             crisp white #FFFFFF
+   Type    : Fraunces (headings) · Space Grotesk (UI labels) · Inter (body)
+   ========================================================= */
+
+:root {
+  --background: #070c0a;
+  --foreground: #ffffff;
+
+  --space: #070c0a;
+  --space-2: #0c1512;
+  --space-3: #101d18;
+
+  --violet: #16a34a;
+  --violet-2: #22c55e;
+  --glow: #4ade80;
+  --glow-2: #a3e635;
+
+  --slate: #131f1a;
+  --slate-2: #1b2a23;
+
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.16);
+  --muted: #9caba4;
+  --muted-2: #6c776f;
+
+  --grad-brand: linear-gradient(120deg, #16a34a 0%, #4ade80 50%, #a3e635 100%);
+  --grad-brand-soft: linear-gradient(135deg, rgba(22, 163, 74, 0.22), rgba(163, 230, 53, 0.1));
+  --grad-text: linear-gradient(100deg, #a3e635 0%, #4ade80 35%, #ffffff 70%, #a3e635 100%);
+
+  --shadow-glow-s: 0 0 0 1px rgba(74, 222, 128, 0.08), 0 10px 26px rgba(2, 6, 4, 0.6);
+  --shadow-glow-m: 0 0 0 1px rgba(74, 222, 128, 0.09), 0 22px 56px rgba(2, 6, 4, 0.65);
+  --shadow-glow-l: 0 0 0 1px rgba(74, 222, 128, 0.1), 0 40px 96px rgba(2, 6, 4, 0.7);
+  --shadow-violet: 0 16px 40px rgba(6, 40, 24, 0.55);
+
+  --radius-s: 12px;
+  --radius-m: 18px;
+  --radius-l: 26px;
+  --radius-xl: 32px;
+
+  --nav-h: 76px;
+  --wrap: 1240px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-space: var(--space);
+  --color-space-2: var(--space-2);
+  --color-space-3: var(--space-3);
+  --color-violet: var(--violet);
+  --color-violet-2: var(--violet-2);
+  --color-glow: var(--glow);
+  --color-glow-2: var(--glow-2);
+  --color-slate: var(--slate);
+  --color-slate-2: var(--slate-2);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+
+  --font-display: var(--font-space-grotesk);
+  --font-heading: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* near-black ambient glow background, fixed so it never re-paints on scroll */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(900px 560px at 82% -8%, rgba(22, 163, 74, 0.15), transparent 62%),
+    radial-gradient(720px 480px at -4% 18%, rgba(22, 163, 74, 0.09), transparent 58%),
+    radial-gradient(760px 520px at 55% 112%, rgba(163, 230, 53, 0.06), transparent 62%),
+    var(--space);
+}
+
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+
+::selection { background: rgba(74, 222, 128, 0.35); color: #fff; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--space); }
+::-webkit-scrollbar-thumb { background: #24382e; border-radius: 99px; border: 2px solid var(--space); }
+::-webkit-scrollbar-thumb:hover { background: #33503f; }
+
+:focus-visible {
+  outline: 2px solid var(--glow);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading), var(--font-sans), serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  margin: 0;
+}
+
+.font-display { font-family: var(--font-display), var(--font-sans), sans-serif; }
+.font-heading { font-family: var(--font-heading), var(--font-sans), serif; }
+
+.text-gradient {
+  background: var(--grad-text);
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-shine 11s ease-in-out infinite;
+}
+
+@keyframes text-shine {
+  0%, 100% { background-position: 0% 0; }
+  50% { background-position: 100% 0; }
+}
+
+@keyframes shine {
+  to { background-position: 220% 0; }
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+.wrap {
+  width: min(100% - 40px, var(--wrap));
+  margin-inline: auto;
+}
+
+/* ---------- glassmorphism / liquid glass ---------- */
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--line);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow: var(--shadow-glow-m);
+}
+
+.glass-strong {
+  background: linear-gradient(180deg, rgba(19, 31, 26, 0.75), rgba(7, 12, 10, 0.75));
+  border: 1px solid var(--line-strong);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  box-shadow: var(--shadow-glow-l);
+}
+
+.liquid-glass {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015) 40%, rgba(22, 163, 74, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 44px rgba(22, 163, 74, 0.08),
+    var(--shadow-glow-m);
+}
+
+/* a slow, faint diagonal light sweep — premium polish, not a strobe */
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.06) 48%, transparent 62%);
+  background-size: 240% 100%;
+  animation: shine 13s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+/* ---------- glossy button shine (sweeps in on hover) ---------- */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.45) 48%, transparent 66%);
+  background-size: 200% 100%;
+  background-position: -60% 0;
+  transition: background-position 0.75s ease;
+  pointer-events: none;
+}
+.btn-shine:hover::after { background-position: 160% 0; }
+
+/* ---------- reveal-on-scroll ---------- */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}

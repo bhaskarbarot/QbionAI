@@ -1,0 +1,108 @@
+.field {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  isolation: isolate;
+  perspective: 1400px;
+  pointer-events: none;
+  overflow: hidden;
+  contain: layout paint style size;
+}
+
+.orbit {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  animation: drift var(--duration) ease-in-out var(--delay) infinite;
+  will-change: transform;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(calc(var(--drift) * -1)); }
+}
+
+.cube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: spin var(--duration) linear infinite;
+  animation-duration: calc(var(--duration) * 2.2);
+}
+
+@keyframes spin {
+  from { transform: rotateX(-24deg) rotateY(0deg); }
+  to { transform: rotateX(336deg) rotateY(360deg); }
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: 14%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+/* glossy diagonal highlight streak — the "shine" on each cube face */
+.face::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.35) 50%, transparent 58%);
+  background-size: 220% 220%;
+  animation: cube-shine 6s ease-in-out infinite;
+}
+
+@keyframes cube-shine {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+}
+
+.front  { transform: translateZ(calc(var(--size) / 2)); }
+.back   { transform: translateZ(calc(var(--size) / -2)) rotateY(180deg); }
+.right  { transform: translateX(calc(var(--size) / 2)) rotateY(90deg); }
+.left   { transform: translateX(calc(var(--size) / -2)) rotateY(-90deg); }
+.top    { transform: translateY(calc(var(--size) / -2)) rotateX(90deg); }
+.bottom { transform: translateY(calc(var(--size) / 2)) rotateX(-90deg); }
+
+/* hue variants — glossy teal-to-lime faces, matching the brand mark */
+.violet .face {
+  background: linear-gradient(150deg, #15532f 0%, #0f3d24 55%, #081f14 100%);
+}
+.violet .top {
+  background: linear-gradient(150deg, #86efac 0%, #22c55e 55%, #15803d 100%);
+}
+.violet .front {
+  background: linear-gradient(150deg, #22c55e 0%, #15803d 60%, #0f3d24 100%);
+}
+
+.glow .face {
+  background: linear-gradient(150deg, #4d7c0f 0%, #365314 55%, #1a2a0a 100%);
+}
+.glow .top {
+  background: linear-gradient(150deg, #d9f99d 0%, #a3e635 55%, #65a30d 100%);
+}
+.glow .front {
+  background: linear-gradient(150deg, #a3e635 0%, #65a30d 60%, #365314 100%);
+}
+
+.slate .face {
+  background: linear-gradient(150deg, #16241d 0%, #101c16 60%, #070f0a 100%);
+  border-color: rgba(74, 222, 128, 0.14);
+}
+.slate .top {
+  background: linear-gradient(150deg, #3a5a49 0%, #22392f 60%, #16241d 100%);
+}
+.slate .front {
+  background: linear-gradient(150deg, #2a4438 0%, #1b2e25 60%, #101c16 100%);
+}
+
+@media (max-width: 760px) {
+  .field { opacity: 0.7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit, .cube { animation: none; }
+}
