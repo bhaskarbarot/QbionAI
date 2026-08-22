@@ -1,12 +1,11 @@
-import { ArrowUpRight, Sparkles } from "lucide-react";
-import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import Button from "@/components/shared/Button";
 import CubeField from "@/components/shared/CubeField";
 import { SITE } from "@/lib/constants";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden pb-24 pt-20 md:pb-32 md:pt-28">
+    <section id="home" className="relative overflow-hidden pb-24 pt-20 md:pb-32 md:pt-28">
       <CubeField className="hidden md:block" />
 
       <div
@@ -17,16 +16,6 @@ export default function Hero() {
 
       <div className="wrap relative z-10">
         <div className="mx-auto max-w-3xl text-center">
-          <Link
-            href="/services"
-            className="liquid-glass mx-auto mb-6 inline-flex items-center gap-2.5 rounded-full py-1.5 pl-2 pr-4 text-xs font-medium text-white/85"
-          >
-            <span className="flex items-center gap-1 rounded-full bg-gradient-to-r from-violet to-glow-2 px-2.5 py-1 text-[11px] font-semibold text-white">
-              <Sparkles size={11} /> New
-            </span>
-            AI agents now shipping for enterprise support teams
-          </Link>
-
           <p className="font-heading mb-3 text-[clamp(1.05rem,2vw,1.35rem)] italic text-glow-2">
             {SITE.tagline}
           </p>

@@ -7,7 +7,7 @@ import { CASE_STUDIES } from "@/lib/constants";
 
 export default function CaseStudies() {
   return (
-    <section className="section py-24">
+    <section id="work" className="section py-24">
       <div className="wrap">
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-6">

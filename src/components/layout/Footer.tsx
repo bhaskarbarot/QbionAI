@@ -1,14 +1,14 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { LinkedInIcon, XIcon, InstagramIcon, GitHubIcon } from "@/components/shared/BrandIcons";
 import { SITE, NAV_LINKS, SERVICES } from "@/lib/constants";
+import Logo from "@/components/shared/Logo";
 
 const SOCIAL_ICONS = { LinkedIn: LinkedInIcon, X: XIcon, Instagram: InstagramIcon, GitHub: GitHubIcon };
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-space-2 pt-20 text-muted">
+    <footer className="relative overflow-hidden bg-space-2 pt-15 text-muted">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -16,23 +16,10 @@ export default function Footer() {
             "radial-gradient(700px 380px at 12% 0%, rgba(22,163,74,0.12), transparent 60%), radial-gradient(600px 340px at 90% 100%, rgba(163,230,53,0.08), transparent 60%)",
         }}
       />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 block translate-y-[18%] select-none text-center font-display text-[19vw] font-extrabold leading-[0.8] tracking-tighter text-white/[0.045] sm:text-[13vw]"
-      >
-        qubion.ai
-      </span>
-
-      <div className="wrap relative z-10 grid gap-12 pb-16 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+      <div className="wrap relative z-10 grid gap-12 pb-0 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
         <div>
           <Link href="/" className="flex items-center">
-            <Image
-              src="/brand/logo-horizontal.svg"
-              alt={SITE.name}
-              width={1080}
-              height={530}
-              className="h-11 w-auto object-contain"
-            />
+            <Logo size="lg" />
           </Link>
           <p className="mt-5 max-w-[36ch] text-sm leading-relaxed">{SITE.description}</p>
           <div className="mt-6 flex gap-2">
@@ -55,7 +42,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="mb-5 font-display text-sm font-semibold text-white">Services</h4>
+          <h4 className="mb-4 font-display text-sm font-semibold text-white">Services</h4>
           <ul className="space-y-3 text-sm">
             {SERVICES.map((s) => (
               <li key={s.slug}>
@@ -68,9 +55,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="mb-5 font-display text-sm font-semibold text-white">Company</h4>
+          <h4 className="mb-4 font-display text-sm font-semibold text-white">Company</h4>
           <ul className="space-y-3 text-sm">
-            {NAV_LINKS.filter((l) => l.href !== "/").map((l) => (
+            {NAV_LINKS.filter((l) => l.label !== "Home").map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="transition-colors hover:text-white">
                   {l.label}
@@ -91,12 +78,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <div className="mb-5 flex items-center gap-2">
-            <h4 className="font-display text-sm font-semibold text-white">Get In Touch</h4>
-            <span className="flex items-center gap-1 rounded-full bg-gradient-to-r from-violet to-glow-2 px-3 py-1 text-xs font-semibold text-white">
-              New
-            </span>
-          </div>
+          <h4 className="mb-4 font-display text-sm font-semibold text-white">Get In Touch</h4>
           <ul className="space-y-3.5 text-sm">
             <li className="flex items-center gap-2.5">
               <Mail size={15} className="shrink-0 text-glow-2" />
@@ -118,7 +100,16 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="wrap relative z-10 flex flex-col items-center gap-1.5 pb-8 pt-6 text-center text-xs text-muted-2">
+      <div className="relative z-10 overflow-hidden pt-2">
+        <span
+          aria-hidden="true"
+          className="pointer-events-none block select-none text-center font-display text-[15vw] font-extrabold leading-[0.85] tracking-tighter text-white/[0.5] sm:text-[15vw]"
+        >
+          qubion.ai
+        </span>
+      </div>
+
+      <div className="wrap relative z-10 flex flex-col items-center gap-1.5 pb-8 pt-4 text-center text-xs text-muted-2">
         <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
         <span>Built with AI accelerated design & engineering.</span>
       </div>

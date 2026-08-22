@@ -20,7 +20,7 @@ const FEATURES = [
 
 export default function ProductPreview() {
   return (
-    <section id="product" className="section relative scroll-mt-24 py-24">
+    <section id="product" className="section relative py-24">
       <div className="wrap">
         <Reveal>
           <SectionHeading

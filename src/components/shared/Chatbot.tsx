@@ -53,8 +53,8 @@ export default function Chatbot() {
               className="glass-panel mb-4 flex h-[440px] w-[88vw] max-w-[360px] flex-col overflow-hidden rounded-3xl"
             >
               <div className="flex items-center gap-3 border-b border-white/10 bg-white/[0.03] px-4 py-4">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-violet to-glow-2 p-1.5">
-                  <Image src="/brand/emblem.svg" alt="" width={40} height={40} className="h-full w-full object-contain" />
+                <span className="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-xl border border-white/10 bg-black">
+                  <Image src="/brand/emblem-dark.svg" alt="" width={1080} height={1080} className="h-full w-full object-contain" />
                 </span>
                 <div>
                   <p className="font-display text-sm font-semibold text-white">Qubion.Ai Assistant</p>

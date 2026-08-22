@@ -9,10 +9,22 @@
   contain: layout paint style size;
 }
 
-.orbit {
+/* positioning layer — holds the absolute top/left placement and the
+   JS-driven mouse/scroll parallax transform (kept on its own element so
+   it never fights the drift/spin keyframe animations for the transform
+   property) */
+.pos {
   position: absolute;
   width: var(--size);
   height: var(--size);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.orbit {
+  position: relative;
+  width: 100%;
+  height: 100%;
   animation: drift var(--duration) ease-in-out var(--delay) infinite;
   will-change: transform;
 }
@@ -105,4 +117,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .orbit, .cube { animation: none; }
+  .pos { transition: none; }
 }

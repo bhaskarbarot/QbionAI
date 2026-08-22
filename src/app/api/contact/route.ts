@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { SITE } from "@/lib/constants";
+import { welcomeEmailHtml, leadNotificationHtml } from "@/lib/emailTemplates";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
 
@@ -59,7 +60,7 @@ export async function POST(req: Request) {
   try {
     // 1. Lead notification to the team
     await transporter.sendMail({
-      from: `"Qubion.Ai Website" <${fromAddress}>`,
+      from: `"${SITE.name} Website" <${fromAddress}>`,
       to: toAddress,
       replyTo: email.trim(),
       subject: `New Lead: ${cleanName}${service ? ` (${service})` : ""}`,
@@ -77,23 +78,32 @@ export async function POST(req: Request) {
       ]
         .filter(Boolean)
         .join("\n"),
+      html: leadNotificationHtml({
+        name: cleanName,
+        email: email.trim(),
+        company: company?.trim(),
+        phone: phone?.trim(),
+        service,
+        message: message.trim(),
+      }),
     });
 
     // 2. Auto reply welcome email to the person who submitted the form
     await transporter.sendMail({
-      from: `"Qubion.Ai" <${fromAddress}>`,
+      from: `"${SITE.name}" <${fromAddress}>`,
       to: email.trim(),
-      subject: "Welcome to Qubion.Ai, we've received your message",
+      subject: `Welcome to ${SITE.name}, we've received your message`,
       text: [
         `Hi ${cleanName.split(" ")[0]},`,
         "",
-        "Thanks for reaching out to Qubion.Ai. We've received your message and a member of our team will connect with you within 2 working days.",
+        `Thanks for reaching out to ${SITE.name}. We've received your message and a member of our team will connect with you within 2 working days.`,
         "",
         "In the meantime, if anything is urgent, you can reach us directly at " + SITE.email + ".",
         "",
         "Talk soon,",
-        "The Qubion.Ai Team",
+        `The ${SITE.name} Team`,
       ].join("\n"),
+      html: welcomeEmailHtml({ name: cleanName, message: message.trim() }),
     });
 
     return NextResponse.json({ ok: true });
