@@ -43,7 +43,7 @@
   --radius-l: 26px;
   --radius-xl: 32px;
 
-  --nav-h: 76px;
+  --nav-h: 92px;
   --wrap: 1240px;
 }
 
@@ -75,7 +75,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 96px;
+  scroll-padding-top: 112px;
 }
 
 body {

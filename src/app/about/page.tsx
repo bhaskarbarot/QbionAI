@@ -59,13 +59,13 @@ export default function AboutPage() {
       <section className="section py-24">
         <div className="wrap grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal>
-            <div className="liquid-glass flex aspect-square items-center justify-center rounded-3xl p-14">
+            <div className="liquid-glass flex aspect-square items-center justify-center overflow-hidden rounded-3xl p-14">
               <Image
-                src="/brand/emblem.svg"
+                src="/brand/emblem-dark.svg"
                 alt="The Qubion mark"
                 width={1080}
                 height={1080}
-                className="h-full w-full object-contain"
+                className="h-full w-full rounded-2xl object-contain"
               />
             </div>
           </Reveal>

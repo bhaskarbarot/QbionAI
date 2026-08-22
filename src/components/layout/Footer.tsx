@@ -8,7 +8,7 @@ const SOCIAL_ICONS = { LinkedIn: LinkedInIcon, X: XIcon, Instagram: InstagramIco
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-space-2 pt-20 text-muted">
+    <footer className="relative overflow-hidden bg-space-2 pt-20 text-muted">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -16,8 +16,14 @@ export default function Footer() {
             "radial-gradient(700px 380px at 12% 0%, rgba(22,163,74,0.12), transparent 60%), radial-gradient(600px 340px at 90% 100%, rgba(163,230,53,0.08), transparent 60%)",
         }}
       />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 block translate-y-[18%] select-none text-center font-display text-[19vw] font-extrabold leading-[0.8] tracking-tighter text-white/[0.045] sm:text-[13vw]"
+      >
+        qubion.ai
+      </span>
 
-      <div className="wrap relative grid gap-12 pb-16 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+      <div className="wrap relative z-10 grid gap-12 pb-16 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
         <div>
           <Link href="/" className="flex items-center">
             <Image
@@ -25,7 +31,7 @@ export default function Footer() {
               alt={SITE.name}
               width={1080}
               height={530}
-              className="h-9 w-auto object-contain"
+              className="h-11 w-auto object-contain"
             />
           </Link>
           <p className="mt-5 max-w-[36ch] text-sm leading-relaxed">{SITE.description}</p>
@@ -85,7 +91,12 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="mb-5 font-display text-sm font-semibold text-white">Get In Touch</h4>
+          <div className="mb-5 flex items-center gap-2">
+            <h4 className="font-display text-sm font-semibold text-white">Get In Touch</h4>
+            <span className="flex items-center gap-1 rounded-full bg-gradient-to-r from-violet to-glow-2 px-3 py-1 text-xs font-semibold text-white">
+              New
+            </span>
+          </div>
           <ul className="space-y-3.5 text-sm">
             <li className="flex items-center gap-2.5">
               <Mail size={15} className="shrink-0 text-glow-2" />
@@ -107,17 +118,9 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="relative border-t border-white/10 pt-10">
-        <span
-          aria-hidden="true"
-          className="pointer-events-none block select-none text-center font-display text-[19vw] font-extrabold leading-[0.8] tracking-tighter text-white/[0.045] sm:text-[13vw]"
-        >
-          qubion.ai
-        </span>
-        <div className="wrap relative -mt-3 flex flex-col items-center gap-1.5 pb-8 text-center text-xs text-muted-2 sm:-mt-6">
-          <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
-          <span>Built with AI accelerated design & engineering.</span>
-        </div>
+      <div className="wrap relative z-10 flex flex-col items-center gap-1.5 pb-8 pt-6 text-center text-xs text-muted-2">
+        <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
+        <span>Built with AI accelerated design & engineering.</span>
       </div>
     </footer>
   );

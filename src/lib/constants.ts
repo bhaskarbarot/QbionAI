@@ -17,11 +17,53 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/#product", label: "Product" },
+  { href: "/product", label: "Product" },
   { href: "/services", label: "Services" },
   { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
+];
+
+export const PRODUCTS = [
+  {
+    icon: "Bot",
+    name: "Qubion Copilot",
+    tagline: "An AI Agent That Resolves Support Tickets Autonomously",
+    summary:
+      "A production ready support agent that plugs into your helpdesk, reasons over your knowledge base and resolves tickets without a human in the loop, escalating cleanly when it should not handle something alone.",
+    features: [
+      "Plugs into Zendesk, Intercom, Freshdesk & custom helpdesks",
+      "Grounded on your own docs, policies & past tickets",
+      "Confidence based escalation to your team",
+      "Full conversation and accuracy analytics",
+    ],
+  },
+  {
+    icon: "Sparkles",
+    name: "Qubion Canvas",
+    tagline: "Design Systems That Design Themselves",
+    summary:
+      "An AI accelerated design workspace that turns a product brief into a working design system, then keeps every screen consistent with it as your product grows.",
+    features: [
+      "Brief to design system in a single working session",
+      "Component and token consistency checks",
+      "Design to code handoff built in",
+      "Works alongside Figma, not instead of it",
+    ],
+  },
+  {
+    icon: "Workflow",
+    name: "Qubion Flow",
+    tagline: "Connect Your Tools. Remove The Busywork",
+    summary:
+      "A monitored automation layer that connects your CRM, ops and reporting tools, so manual, repetitive work runs itself and someone gets notified the moment it does not.",
+    features: [
+      "Visual workflow builder for non technical teams",
+      "Native CRM, spreadsheet & internal tool integrations",
+      "Built in monitoring, retries & alerting",
+      "Full audit log of every automated action",
+    ],
+  },
 ];
 
 export const SERVICES = [

@@ -98,7 +98,21 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("Contact form send failed:", err);
+    const code = (err as { code?: string })?.code;
+    console.error("Contact form send failed:", { code, err });
+
+    if (code === "EAUTH") {
+      return NextResponse.json(
+        { error: "Email login failed. The mailbox username or password is incorrect." },
+        { status: 502 }
+      );
+    }
+    if (code === "ECONNECTION" || code === "ESOCKET" || code === "ETIMEDOUT" || code === "ECONNREFUSED") {
+      return NextResponse.json(
+        { error: "Could not reach the mail server. Please check the SMTP host and port." },
+        { status: 502 }
+      );
+    }
     return NextResponse.json({ error: "Could not send your message. Please try again." }, { status: 500 });
   }
 }

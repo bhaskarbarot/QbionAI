@@ -34,14 +34,14 @@ export default function Header() {
         scrolled ? "border-b border-white/10 bg-space/85 shadow-[0_8px_30px_rgba(0,0,0,0.4)] backdrop-blur-xl" : "border-b border-transparent bg-space/40 backdrop-blur-md"
       )}
     >
-      <div className="wrap flex h-[76px] items-center justify-between gap-6">
+      <div className="wrap flex h-[92px] items-center justify-between gap-6">
         <Link href="/" className="flex items-center">
           <Image
             src="/brand/logo-horizontal.svg"
             alt={SITE.name}
             width={1080}
             height={530}
-            className="h-8 w-auto object-contain drop-shadow-[0_6px_16px_rgba(74,222,128,0.3)] sm:h-9"
+            className="h-11 w-auto object-contain drop-shadow-[0_6px_16px_rgba(74,222,128,0.3)] sm:h-14"
             priority
           />
         </Link>
@@ -54,11 +54,16 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 className={clsx(
-                  "rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                  "flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors",
                   active ? "bg-white/10 text-white" : "text-muted hover:bg-white/5 hover:text-white"
                 )}
               >
                 {link.label}
+                {link.label === "Contact" && (
+                  <span className="flex items-center gap-1 rounded-full bg-gradient-to-r from-violet to-glow-2 px-2.5 py-1 text-[11px] font-semibold text-white">
+                    New
+                  </span>
+                )}
               </Link>
             );
           })}
@@ -86,9 +91,14 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-lg px-3 py-3 text-[15px] font-medium text-white/90 hover:bg-white/5"
+                className="flex items-center gap-2 rounded-lg px-3 py-3 text-[15px] font-medium text-white/90 hover:bg-white/5"
               >
                 {link.label}
+                {link.label === "Contact" && (
+                  <span className="flex items-center gap-1 rounded-full bg-gradient-to-r from-violet to-glow-2 px-2.5 py-1 text-[11px] font-semibold text-white">
+                    New
+                  </span>
+                )}
               </Link>
             ))}
             <Button href="/contact" className="mt-3 w-full">
