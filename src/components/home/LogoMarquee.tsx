@@ -1,14 +1,26 @@
-const LOGOS = ["Acme Corp", "Outside", "PULSE", "APEX", "Quanta", "Northwind", "Vertex", "Lumen"];
+const LOGOS = [
+  "Acme Corp",
+  "Outside",
+  "PULSE",
+  "APEX",
+  "Quanta",
+  "Northwind",
+  "Vertex",
+  "Lumen",
+  "Meridian",
+  "Solace",
+  "Crestline",
+];
 
 export default function LogoMarquee() {
   const track = [...LOGOS, ...LOGOS];
   return (
     <section className="border-y border-white/8 bg-white/[0.02] py-8">
       <p className="mb-6 text-center font-display text-xs uppercase tracking-[0.22em] text-muted-2">
-        Trusted by innovative teams
+        Trusted By Innovative Teams
       </p>
       <div className="overflow-hidden">
-        <div className="flex w-max animate-[marquee_28s_linear_infinite] gap-16 [&:hover]:[animation-play-state:paused]">
+        <div className="flex w-max animate-[marquee_38s_linear_infinite] gap-16 [&:hover]:[animation-play-state:paused]">
           {track.map((logo, i) => (
             <span
               key={i}

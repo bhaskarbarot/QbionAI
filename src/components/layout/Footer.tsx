@@ -8,7 +8,7 @@ const SOCIAL_ICONS = { LinkedIn: LinkedInIcon, X: XIcon, Instagram: InstagramIco
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-space-2 pt-16 text-muted">
+    <footer className="relative overflow-hidden border-t border-white/10 bg-space-2 pt-20 text-muted">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -16,26 +16,20 @@ export default function Footer() {
             "radial-gradient(700px 380px at 12% 0%, rgba(22,163,74,0.12), transparent 60%), radial-gradient(600px 340px at 90% 100%, rgba(163,230,53,0.08), transparent 60%)",
         }}
       />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-[0.14em] left-1/2 w-full -translate-x-1/2 select-none whitespace-nowrap text-center font-display text-[19vw] font-bold leading-none tracking-tighter text-white/[0.035] sm:text-[13vw]"
-      >
-        QUBIONAI.IN
-      </span>
 
-      <div className="wrap relative grid gap-12 pb-12 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+      <div className="wrap relative grid gap-12 pb-16 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
         <div>
           <Link href="/" className="flex items-center">
             <Image
-              src="/brand/logo-full.png"
+              src="/brand/logo-horizontal.svg"
               alt={SITE.name}
-              width={3729}
-              height={1131}
+              width={1080}
+              height={530}
               className="h-9 w-auto object-contain"
             />
           </Link>
-          <p className="mt-4 max-w-[36ch] text-sm leading-relaxed">{SITE.description}</p>
-          <div className="mt-5 flex gap-2">
+          <p className="mt-5 max-w-[36ch] text-sm leading-relaxed">{SITE.description}</p>
+          <div className="mt-6 flex gap-2">
             {SITE.socials.map((s) => {
               const Icon = SOCIAL_ICONS[s.label as keyof typeof SOCIAL_ICONS];
               return (
@@ -55,11 +49,11 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="mb-4 font-display text-sm font-semibold text-white">Services</h4>
-          <ul className="space-y-2.5 text-sm">
+          <h4 className="mb-5 font-display text-sm font-semibold text-white">Services</h4>
+          <ul className="space-y-3 text-sm">
             {SERVICES.map((s) => (
               <li key={s.slug}>
-                <Link href={`/services#${s.slug}`} className="hover:text-white">
+                <Link href={`/services#${s.slug}`} className="transition-colors hover:text-white">
                   {s.title}
                 </Link>
               </li>
@@ -68,40 +62,40 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="mb-4 font-display text-sm font-semibold text-white">Company</h4>
-          <ul className="space-y-2.5 text-sm">
+          <h4 className="mb-5 font-display text-sm font-semibold text-white">Company</h4>
+          <ul className="space-y-3 text-sm">
             {NAV_LINKS.filter((l) => l.href !== "/").map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="hover:text-white">
+                <Link href={l.href} className="transition-colors hover:text-white">
                   {l.label}
                 </Link>
               </li>
             ))}
             <li>
-              <Link href="/privacy" className="hover:text-white">
+              <Link href="/privacy" className="transition-colors hover:text-white">
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link href="/terms" className="hover:text-white">
-                Terms of Service
+              <Link href="/terms" className="transition-colors hover:text-white">
+                Terms Of Service
               </Link>
             </li>
           </ul>
         </div>
 
         <div>
-          <h4 className="mb-4 font-display text-sm font-semibold text-white">Get in touch</h4>
-          <ul className="space-y-3 text-sm">
+          <h4 className="mb-5 font-display text-sm font-semibold text-white">Get In Touch</h4>
+          <ul className="space-y-3.5 text-sm">
             <li className="flex items-center gap-2.5">
               <Mail size={15} className="shrink-0 text-glow-2" />
-              <a href={`mailto:${SITE.email}`} className="hover:text-white">
+              <a href={`mailto:${SITE.email}`} className="transition-colors hover:text-white">
                 {SITE.email}
               </a>
             </li>
             <li className="flex items-center gap-2.5">
               <Phone size={15} className="shrink-0 text-glow-2" />
-              <a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="hover:text-white">
+              <a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="transition-colors hover:text-white">
                 {SITE.phone}
               </a>
             </li>
@@ -113,10 +107,16 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="relative border-t border-white/10 py-6">
-        <div className="wrap flex flex-wrap items-center justify-between gap-3 text-xs text-muted-2">
+      <div className="relative border-t border-white/10 pt-10">
+        <span
+          aria-hidden="true"
+          className="pointer-events-none block select-none text-center font-display text-[19vw] font-extrabold leading-[0.8] tracking-tighter text-white/[0.045] sm:text-[13vw]"
+        >
+          qubion.ai
+        </span>
+        <div className="wrap relative -mt-3 flex flex-col items-center gap-1.5 pb-8 text-center text-xs text-muted-2 sm:-mt-6">
           <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
-          <span>Built with AI-accelerated design & engineering.</span>
+          <span>Built with AI accelerated design & engineering.</span>
         </div>
       </div>
     </footer>

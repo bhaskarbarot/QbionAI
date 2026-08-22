@@ -37,10 +37,10 @@ export default function Header() {
       <div className="wrap flex h-[76px] items-center justify-between gap-6">
         <Link href="/" className="flex items-center">
           <Image
-            src="/brand/logo-full.png"
+            src="/brand/logo-horizontal.svg"
             alt={SITE.name}
-            width={3729}
-            height={1131}
+            width={1080}
+            height={530}
             className="h-8 w-auto object-contain drop-shadow-[0_6px_16px_rgba(74,222,128,0.3)] sm:h-9"
             priority
           />
@@ -66,7 +66,7 @@ export default function Header() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <Button href="/contact" size="md">
-            Start a project <ArrowUpRight size={16} />
+            Start a Project <ArrowUpRight size={16} />
           </Button>
         </div>
 
@@ -92,7 +92,7 @@ export default function Header() {
               </Link>
             ))}
             <Button href="/contact" className="mt-3 w-full">
-              Start a project <ArrowUpRight size={16} />
+              Start a Project <ArrowUpRight size={16} />
             </Button>
           </div>
         </div>

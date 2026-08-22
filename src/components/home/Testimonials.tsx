@@ -8,7 +8,7 @@ export default function Testimonials() {
     <section className="section border-y border-white/8 bg-white/[0.015] py-24">
       <div className="wrap">
         <Reveal>
-          <SectionHeading center eyebrow="Client voices" title="What it's like to work with us" />
+          <SectionHeading center eyebrow="Client Voices" title="What It's Like To Work With Us" />
         </Reveal>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">

@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { BrainCircuit, Sparkles, Workflow, Target, Check } from "lucide-react";
+import { BrainCircuit, Sparkles, Bot, Megaphone, Check } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import Reveal from "@/components/shared/Reveal";
-import Pricing from "@/components/home/Pricing";
 import CTABand from "@/components/shared/CTABand";
 import { SERVICES } from "@/lib/constants";
 
-const ICONS = { BrainCircuit, Sparkles, Workflow, Target };
+const ICONS = { BrainCircuit, Sparkles, Bot, Megaphone };
 
 export const metadata: Metadata = {
-  title: "Services — Qubion.Ai",
-  description: "AI solutions, AI-powered design, automation and performance advertising from Qubion.Ai.",
+  title: "Services | Qubion.Ai",
+  description: "AI solutions, AI powered design, automation and performance advertising from Qubion.Ai.",
 };
 
 export default function ServicesPage() {
@@ -18,8 +17,8 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="Services"
-        title="Four disciplines that compound"
-        desc="Every engagement pulls from the same embedded team — so your AI product, brand and growth systems stay in sync instead of fighting each other."
+        title="Four Disciplines That Compound"
+        desc="Every engagement pulls from the same embedded team, so your AI product, brand and growth systems stay in sync instead of fighting each other."
       />
 
       <div>
@@ -53,8 +52,23 @@ export default function ServicesPage() {
                 </Reveal>
 
                 <Reveal delay={0.1} className={i % 2 === 1 ? "md:order-1" : ""}>
-                  <div className="liquid-glass flex aspect-[4/3] items-center justify-center rounded-3xl">
-                    <Icon size={64} className="text-glow-2 opacity-40" strokeWidth={1.2} />
+                  <div className="liquid-glass relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-3xl">
+                    <div
+                      className="absolute inset-0 opacity-60"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px)",
+                        backgroundSize: "28px 28px",
+                        maskImage: "radial-gradient(circle at 50% 50%, black 0%, transparent 72%)",
+                        WebkitMaskImage: "radial-gradient(circle at 50% 50%, black 0%, transparent 72%)",
+                      }}
+                    />
+                    <div className="absolute h-56 w-56 rounded-full bg-gradient-to-br from-violet/25 to-glow-2/10 blur-3xl" />
+                    <span className="absolute h-24 w-24 rounded-full border border-glow/25" />
+                    <span className="absolute h-40 w-40 rounded-full border border-glow/10" />
+                    <span className="relative grid h-24 w-24 place-items-center rounded-3xl border border-white/12 bg-gradient-to-br from-white/10 to-white/[0.02] shadow-[0_20px_50px_rgba(2,6,4,0.5)]">
+                      <Icon size={40} className="text-glow-2" strokeWidth={1.4} />
+                    </span>
                   </div>
                 </Reveal>
               </div>
@@ -63,7 +77,6 @@ export default function ServicesPage() {
         })}
       </div>
 
-      <Pricing />
       <CTABand />
     </>
   );

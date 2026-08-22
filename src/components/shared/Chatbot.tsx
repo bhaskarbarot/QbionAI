@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { MessageSquare, X, Send, Sparkles } from "lucide-react";
+import Image from "next/image";
+import { MessageSquare, X, Send } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SITE } from "@/lib/constants";
 
@@ -15,7 +16,7 @@ const INITIAL: Msg[] = [
 ];
 
 const CANNED =
-  "Thanks for the message — this chatbot is a UI preview for now. For a real answer right away, email us at " +
+  "Thanks for the message. This chatbot is a UI preview for now. For a real answer right away, email us at " +
   SITE.email +
   " or use the contact form.";
 
@@ -49,16 +50,16 @@ export default function Chatbot() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 16, scale: 0.96 }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="liquid-glass mb-4 flex h-[440px] w-[88vw] max-w-[360px] flex-col overflow-hidden rounded-3xl"
+              className="glass-panel mb-4 flex h-[440px] w-[88vw] max-w-[360px] flex-col overflow-hidden rounded-3xl"
             >
               <div className="flex items-center gap-3 border-b border-white/10 bg-white/[0.03] px-4 py-4">
-                <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-violet to-glow-2">
-                  <Sparkles size={16} className="text-white" />
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-violet to-glow-2 p-1.5">
+                  <Image src="/brand/emblem.svg" alt="" width={40} height={40} className="h-full w-full object-contain" />
                 </span>
                 <div>
                   <p className="font-display text-sm font-semibold text-white">Qubion.Ai Assistant</p>
                   <p className="flex items-center gap-1.5 text-xs text-muted">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Demo preview
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Demo Preview
                   </p>
                 </div>
               </div>

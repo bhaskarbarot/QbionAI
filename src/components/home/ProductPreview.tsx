@@ -20,13 +20,13 @@ const FEATURES = [
 
 export default function ProductPreview() {
   return (
-    <section className="section relative py-24">
+    <section id="product" className="section relative scroll-mt-24 py-24">
       <div className="wrap">
         <Reveal>
           <SectionHeading
             center
-            eyebrow="Everything you need"
-            title="One live view of every AI system we build for you"
+            eyebrow="Everything You Need"
+            title="One Live View Of Every AI System We Build For You"
             desc="No black boxes. Every agent, automation and campaign reports into a dashboard your team can actually read."
           />
         </Reveal>

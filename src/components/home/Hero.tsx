@@ -39,15 +39,15 @@ export default function Hero() {
 
           <p className="mx-auto mt-6 max-w-[52ch] text-[17px] leading-relaxed text-muted">
             Qubion.Ai builds AI agents, design systems and automation pipelines for
-            growing brands — from first prototype to production, in weeks, not quarters.
+            growing brands, from first prototype to production, in weeks, not quarters.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
             <Button href="/contact" size="lg">
-              Start a project <ArrowUpRight size={17} />
+              Start a Project <ArrowUpRight size={17} />
             </Button>
             <Button href="/work" variant="ghost" size="lg">
-              See our work
+              See Our Work
             </Button>
           </div>
 

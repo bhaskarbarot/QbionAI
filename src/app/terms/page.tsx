@@ -3,21 +3,21 @@ import PageHero from "@/components/shared/PageHero";
 import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Qubion.Ai",
+  title: "Terms Of Service | Qubion.Ai",
   description: "Terms governing the use of the Qubion.Ai website and services.",
 };
 
 export default function TermsPage() {
   return (
     <>
-      <PageHero eyebrow="Legal" title="Terms of Service" desc="Last updated: August 2026" />
+      <PageHero eyebrow="Legal" title="Terms Of Service" desc="Last Updated August 2026" />
       <section className="py-16">
         <div className="wrap max-w-3xl space-y-8 text-[15px] leading-relaxed text-muted">
           <div>
             <h2 className="mb-2 font-display text-xl text-white">1. Overview</h2>
             <p>
               These terms govern your use of the {SITE.name} website. By using this site, you agree to these
-              terms. Engagement-specific terms for paid work are set out separately in a signed statement of
+              terms. Terms specific to a paid engagement are set out separately in a signed statement of
               work or contract.
             </p>
           </div>

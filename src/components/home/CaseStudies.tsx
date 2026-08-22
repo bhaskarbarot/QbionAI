@@ -11,7 +11,7 @@ export default function CaseStudies() {
       <div className="wrap">
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionHeading eyebrow="Selected work" title="Outcomes, not just deliverables" />
+            <SectionHeading eyebrow="Selected Work" title="Outcomes, Not Just Deliverables" />
             <Button href="/work" variant="ghost">
               View all work <ArrowUpRight size={16} />
             </Button>

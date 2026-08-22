@@ -14,7 +14,7 @@ export default function FAQ() {
     <section className="section border-y border-white/8 bg-white/[0.015] py-24">
       <div className="wrap">
         <Reveal>
-          <SectionHeading center eyebrow="FAQ" title="Questions, answered" />
+          <SectionHeading center eyebrow="FAQ" title="Questions, Answered" />
         </Reveal>
 
         <div className="mx-auto mt-12 max-w-2xl border-t border-white/8">

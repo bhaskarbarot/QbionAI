@@ -5,7 +5,7 @@
    Palette : near-black #070C0A · teal-green #16A34A/#22C55E
              mint-lime glow #4ADE80/#A3E635 · dark surface #131F1A
              crisp white #FFFFFF
-   Type    : Fraunces (headings) · Space Grotesk (UI labels) · Inter (body)
+   Type    : Fraunces (headings) · Plus Jakarta Sans (UI & body)
    ========================================================= */
 
 :root {
@@ -64,9 +64,9 @@
   --color-muted: var(--muted);
   --color-muted-2: var(--muted-2);
 
-  --font-display: var(--font-space-grotesk);
+  --font-display: var(--font-jakarta);
   --font-heading: var(--font-fraunces);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-jakarta);
 }
 
 * {
@@ -196,6 +196,15 @@ h1, h2, h3, h4 {
   background-size: 240% 100%;
   animation: shine 13s ease-in-out infinite;
   opacity: 0.7;
+}
+
+/* ---------- solid glass panel (chat, menus — needs real contrast, not a see-through hero card) ---------- */
+.glass-panel {
+  background: linear-gradient(180deg, rgba(16, 24, 20, 0.97), rgba(7, 12, 10, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow: var(--shadow-glow-l);
 }
 
 /* ---------- glossy button shine (sweeps in on hover) ---------- */

@@ -7,7 +7,7 @@ export default function Process() {
     <section className="section border-y border-white/8 bg-white/[0.015] py-24">
       <div className="wrap">
         <Reveal>
-          <SectionHeading center eyebrow="How we work" title="A process built for speed without the chaos" />
+          <SectionHeading center eyebrow="How We Work" title="A Process Built For Speed Without The Chaos" />
         </Reveal>
 
         <div className="mt-14 grid gap-8 md:grid-cols-4">

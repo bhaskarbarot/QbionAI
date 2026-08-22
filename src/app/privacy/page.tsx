@@ -3,20 +3,20 @@ import PageHero from "@/components/shared/PageHero";
 import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Qubion.Ai",
+  title: "Privacy Policy | Qubion.Ai",
   description: "How Qubion.Ai collects, uses and protects your data.",
 };
 
 export default function PrivacyPage() {
   return (
     <>
-      <PageHero eyebrow="Legal" title="Privacy Policy" desc="Last updated: August 2026" />
+      <PageHero eyebrow="Legal" title="Privacy Policy" desc="Last Updated August 2026" />
       <section className="py-16">
         <div className="wrap max-w-3xl space-y-8 text-[15px] leading-relaxed text-muted">
           <div>
             <h2 className="mb-2 font-display text-xl text-white">1. Information we collect</h2>
             <p>
-              When you use our contact form or email us, we collect the information you provide directly —
+              When you use our contact form or email us, we collect the information you provide directly,
               such as your name, email address, phone number, company and project details. We do not sell
               this information to third parties.
             </p>
@@ -25,8 +25,8 @@ export default function PrivacyPage() {
             <h2 className="mb-2 font-display text-xl text-white">2. How we use it</h2>
             <p>
               We use the information you submit to respond to inquiries, scope projects and, where you&rsquo;ve
-              agreed, to follow up about our services. We may use aggregated, non-identifying analytics to
-              understand how visitors use this site.
+              agreed, to follow up about our services. We may use aggregate analytics that do not identify
+              individual visitors to understand how this site is used.
             </p>
           </div>
           <div>

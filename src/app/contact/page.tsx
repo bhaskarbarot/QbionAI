@@ -6,7 +6,7 @@ import ContactForm from "@/components/contact/ContactForm";
 import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Contact — Qubion.Ai",
+  title: "Contact | Qubion.Ai",
   description: "Tell Qubion.Ai about your AI, design or automation project.",
 };
 
@@ -14,7 +14,7 @@ const INFO = [
   { icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
   { icon: Phone, label: "Phone", value: SITE.phone, href: `tel:${SITE.phone.replace(/\s/g, "")}` },
   { icon: MapPin, label: "Location", value: SITE.location },
-  { icon: Clock, label: "Response time", value: "Within 1 business day" },
+  { icon: Clock, label: "Response Time", value: "Within 2 Working Days" },
 ];
 
 export default function ContactPage() {
@@ -22,8 +22,8 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Let's talk about what you're building"
-        desc="Share a few details about your project and a member of the team will get back to you within one business day."
+        title="Let's Talk About What You're Building"
+        desc="Share a few details about your project and a member of the team will get back to you within 2 working days."
       />
 
       <section className="py-20">

@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { BrainCircuit, Sparkles, Workflow, Target, Check, ArrowUpRight } from "lucide-react";
+import { BrainCircuit, Sparkles, Bot, Megaphone, Check, ArrowUpRight } from "lucide-react";
 import Reveal from "@/components/shared/Reveal";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { SERVICES } from "@/lib/constants";
 
-const ICONS = { BrainCircuit, Sparkles, Workflow, Target };
+const ICONS = { BrainCircuit, Sparkles, Bot, Megaphone };
 
 export default function Services() {
   return (
@@ -12,8 +12,8 @@ export default function Services() {
       <div className="wrap">
         <Reveal>
           <SectionHeading
-            eyebrow="What we do"
-            title="Four disciplines. One embedded team."
+            eyebrow="What We Do"
+            title="Four Disciplines. One Embedded Team."
             desc="We don't hand off a deck and disappear. Our pods design, build and operate the systems they ship."
           />
         </Reveal>
