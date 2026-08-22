@@ -92,7 +92,7 @@ export default function Header() {
             );
           })}
           <Link
-            href="/services"
+            href="/services#ai-solutions"
             className="ml-2 flex items-center gap-1 rounded-full bg-gradient-to-r from-violet to-glow-2 px-2.5 py-1 text-[11px] font-semibold text-white"
           >
             <Sparkles size={11} /> New
@@ -131,7 +131,7 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="/services"
+              href="/services#ai-solutions"
               onClick={() => setOpen(false)}
               className="mt-2 flex w-fit items-center gap-1 rounded-full bg-gradient-to-r from-violet to-glow-2 px-3 py-1.5 text-xs font-semibold text-white"
             >

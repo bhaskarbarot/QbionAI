@@ -31,9 +31,18 @@ const CUBES: CubeSpec[] = [
   { size: 62, top: "42%", left: "21%", duration: 14, delay: 0.5, drift: 22, hue: "violet", depth: 1.0 },
 ];
 
+// how fast each cube drifts on its own with nobody touching it (deg/sec)
+const BASE_SPIN = CUBES.map((c) => 360 / (c.duration * 2.2));
+
+// how much "spin energy" a drag imparts, and how quickly that energy fades
+const DRAG_SENSITIVITY = 0.85; // deg/sec of extra spin per px of cursor movement
+const MAX_EXTRA_SPEED = 150; // deg/sec cap, so a hard swipe still looks smooth, not frantic
+const DECAY_PER_SECOND = 0.08; // fraction of extra spin still left after 1 full second
+
 export default function CubeField({ className }: { className?: string }) {
   const fieldRef = useRef<HTMLDivElement>(null);
   const posRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const cubeRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const field = fieldRef.current;
@@ -44,11 +53,26 @@ export default function CubeField({ className }: { className?: string }) {
 
     let mouseX = 0;
     let mouseY = 0;
+    let clientX = -9999;
+    let clientY = -9999;
     let scrollFactor = 0;
     let raf = 0;
+    let lastT = performance.now();
 
-    function apply() {
-      raf = 0;
+    const angleX = CUBES.map(() => -24);
+    const angleY = CUBES.map(() => 0);
+    const extraVelX = CUBES.map(() => 0);
+    const extraVelY = CUBES.map(() => 0);
+    const pendingImpulseX = CUBES.map(() => 0);
+    const pendingImpulseY = CUBES.map(() => 0);
+
+    const tick = (now: number) => {
+      raf = requestAnimationFrame(tick);
+      const dt = Math.min(0.05, (now - lastT) / 1000);
+      lastT = now;
+      const decay = Math.pow(DECAY_PER_SECOND, dt);
+
+      // parallax on the outer positioning layer (mouse tilt + scroll drift)
       posRefs.current.forEach((el, i) => {
         if (!el) return;
         const depth = CUBES[i].depth;
@@ -56,35 +80,63 @@ export default function CubeField({ className }: { className?: string }) {
         const y = mouseY * depth * 16 + scrollFactor * depth * 26;
         el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
       });
-    }
 
-    function schedule() {
-      if (!raf) raf = requestAnimationFrame(apply);
-    }
+      // per-cube rotation: gentle ambient spin + drag momentum that eases out
+      cubeRefs.current.forEach((el, i) => {
+        if (!el) return;
 
-    function onMouseMove(e: MouseEvent) {
+        extraVelX[i] = (extraVelX[i] + pendingImpulseX[i]) * decay;
+        extraVelY[i] = (extraVelY[i] + pendingImpulseY[i]) * decay;
+        pendingImpulseX[i] = 0;
+        pendingImpulseY[i] = 0;
+        extraVelX[i] = Math.max(-MAX_EXTRA_SPEED, Math.min(MAX_EXTRA_SPEED, extraVelX[i]));
+        extraVelY[i] = Math.max(-MAX_EXTRA_SPEED, Math.min(MAX_EXTRA_SPEED, extraVelY[i]));
+
+        angleX[i] += (BASE_SPIN[i] + extraVelX[i]) * dt;
+        angleY[i] += (BASE_SPIN[i] + extraVelY[i]) * dt;
+
+        el.style.transform = `rotateX(${angleX[i].toFixed(2)}deg) rotateY(${angleY[i].toFixed(2)}deg)`;
+      });
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
       const rect = field.getBoundingClientRect();
       mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
       mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-      schedule();
-    }
+      clientX = e.clientX;
+      clientY = e.clientY;
 
-    function onScroll() {
+      // only cubes the cursor is actually dragging across pick up spin
+      cubeRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const rect2 = el.getBoundingClientRect();
+        const cx = rect2.left + rect2.width / 2;
+        const cy = rect2.top + rect2.height / 2;
+        const dist = Math.hypot(clientX - cx, clientY - cy);
+        const threshold = CUBES[i].size * 1.6 + 70;
+        if (dist < threshold) {
+          pendingImpulseY[i] += e.movementX * DRAG_SENSITIVITY;
+          pendingImpulseX[i] += -e.movementY * DRAG_SENSITIVITY;
+        }
+      });
+    };
+
+    const onScroll = () => {
       const rect = field.getBoundingClientRect();
       // -1..1 style progress of the field through the viewport, so cubes
       // ease away as the hero scrolls out rather than jumping around
       scrollFactor = Math.max(-1, Math.min(1, -rect.top / (rect.height || 1)));
-      schedule();
-    }
+    };
 
     window.addEventListener("mousemove", onMouseMove, { passive: true });
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+    raf = requestAnimationFrame(tick);
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("scroll", onScroll);
-      if (raf) cancelAnimationFrame(raf);
+      cancelAnimationFrame(raf);
     };
   }, []);
 
@@ -97,20 +149,24 @@ export default function CubeField({ className }: { className?: string }) {
             posRefs.current[i] = el;
           }}
           className={styles.pos}
-          style={{ top: c.top, left: c.left }}
+          style={
+            {
+              top: c.top,
+              left: c.left,
+              "--size": `${c.size}px`,
+              "--duration": `${c.duration}s`,
+              "--delay": `${c.delay}s`,
+              "--drift": `${c.drift}px`,
+            } as React.CSSProperties
+          }
         >
-          <div
-            className={`${styles.orbit} ${styles[c.hue]}`}
-            style={
-              {
-                "--size": `${c.size}px`,
-                "--duration": `${c.duration}s`,
-                "--delay": `${c.delay}s`,
-                "--drift": `${c.drift}px`,
-              } as React.CSSProperties
-            }
-          >
-            <div className={styles.cube}>
+          <div className={`${styles.orbit} ${styles[c.hue]}`}>
+            <div
+              className={styles.cube}
+              ref={(el) => {
+                cubeRefs.current[i] = el;
+              }}
+            >
               <span className={`${styles.face} ${styles.front}`} />
               <span className={`${styles.face} ${styles.back}`} />
               <span className={`${styles.face} ${styles.right}`} />

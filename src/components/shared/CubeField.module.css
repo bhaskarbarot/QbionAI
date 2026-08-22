@@ -39,13 +39,8 @@
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  animation: spin var(--duration) linear infinite;
-  animation-duration: calc(var(--duration) * 2.2);
-}
-
-@keyframes spin {
-  from { transform: rotateX(-24deg) rotateY(0deg); }
-  to { transform: rotateX(336deg) rotateY(360deg); }
+  /* rotation is driven every frame from JS (ambient drift + drag momentum),
+     not a fixed keyframe loop — see the rAF loop in CubeField.tsx */
 }
 
 .face {
@@ -116,6 +111,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .orbit, .cube { animation: none; }
+  .orbit { animation: none; }
   .pos { transition: none; }
 }

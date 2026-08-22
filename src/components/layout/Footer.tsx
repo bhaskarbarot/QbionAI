@@ -1,10 +1,15 @@
 import Link from "next/link";
+import { Poppins } from "next/font/google";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { LinkedInIcon, XIcon, InstagramIcon, GitHubIcon } from "@/components/shared/BrandIcons";
 import { SITE, NAV_LINKS, SERVICES } from "@/lib/constants";
 import Logo from "@/components/shared/Logo";
 
 const SOCIAL_ICONS = { LinkedIn: LinkedInIcon, X: XIcon, Instagram: InstagramIcon, GitHub: GitHubIcon };
+
+// matches the geometric "q" (circular bowl, straight tail) in the real
+// qubion.ai wordmark more closely than the site's UI font does
+const wordmarkFont = Poppins({ subsets: ["latin"], weight: "600" });
 
 export default function Footer() {
   return (
@@ -105,7 +110,7 @@ export default function Footer() {
           aria-hidden="true"
           className="pointer-events-none block select-none text-center font-display text-[15vw] font-extrabold leading-[0.85] tracking-tighter text-white/[0.5] sm:text-[15vw]"
         >
-          qubion.ai
+          <span className={wordmarkFont.className}>q</span>ubion.ai
         </span>
       </div>
 
